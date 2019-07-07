@@ -25,14 +25,14 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Modules\\Setting\\Providers\\InitServiceProvider"
+                "GeekCms\\Setting\\Providers\\InitServiceProvider"
             ],
             "aliases": {}
         }
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Setting\\": ""
+            "GeekCms\\Setting\\": ""
         }
     }
 }
