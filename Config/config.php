@@ -3,8 +3,8 @@
 return [
     'FacadeName' => [
         'alias' => 'ConfigManager',
-        'facadePath' => 'Modules\Setting\Facades\Facade',
-        'mainRepoPath' => 'Modules\Setting\Repository\ManagerRepository',
+        'facadePath' => 'GeekCms\Setting\Facades\Facade',
+        'mainRepoPath' => 'GeekCms\Setting\Repository\ManagerRepository',
     ],
     'main_variables' => [
         'feedback.email',

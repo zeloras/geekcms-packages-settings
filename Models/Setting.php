@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Setting\Models;
+namespace GeekCms\Setting\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Setting\Http\Controllers;
+namespace GeekCms\Setting\Http\Controllers;
 
 use Artisan;
 use Illuminate\Routing\Controller;

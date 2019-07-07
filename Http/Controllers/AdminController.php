@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Setting\Http\Controllers;
+namespace GeekCms\Setting\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;

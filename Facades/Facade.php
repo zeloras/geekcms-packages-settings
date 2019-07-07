@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Setting\Facades;
+namespace GeekCms\Setting\Facades;
 
 class Facade extends \Illuminate\Support\Facades\Facade
 {

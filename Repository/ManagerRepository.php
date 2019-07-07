@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Setting\Repository;
+namespace GeekCms\Setting\Repository;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
-use Modules\Setting\Models\Setting;
+use GeekCms\Setting\Models\Setting;
 
 class ManagerRepository
 {
