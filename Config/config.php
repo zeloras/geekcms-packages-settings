@@ -1,0 +1,35 @@
+<?php
+
+return [
+    'FacadeName' => [
+        'alias' => 'ConfigManager',
+        'facadePath' => 'Modules\Setting\Facades\Facade',
+        'mainRepoPath' => 'Modules\Setting\Repository\ManagerRepository',
+    ],
+    'main_variables' => [
+        'feedback.email',
+        'front.phone_human',
+        'front.phone_link',
+        'front.site',
+        'front.email',
+        'front.vk',
+        'front.instagram',
+        'front.facebook',
+        'app.admin_prefix',
+        'app.name',
+        'app.url',
+        'app.locale',
+        'mail.driver',
+        'mail.host',
+        'mail.port',
+        'mail.from.address',
+        'mail.from.name',
+        'mail.encryption',
+        'mail.username',
+        'mail.password',
+        'themes.default',
+        'themes.cache',
+        'app.close',
+        'module_pages.main_page_slug',
+    ],
+];

@@ -1,0 +1,11 @@
+.tab-section__no-border,
+.tabs-section.tab-section__no-border > .tab-content:not(.no-styled) {
+    border: 0;
+}
+
+.tab-section__no-border .tabs-section-nav .nav-item:first-child .nav-link,
+.tab-section__no-border .tabs-section-nav .nav-item:last-child .nav-link {
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
