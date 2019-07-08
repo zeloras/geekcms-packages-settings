@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web', 'permission:admin_access'], 'prefix' => getAdminPrefix('setting')], function () {
+Route::group(['middleware' => ['web', 'permission:' . \Gcms::MAIN_ADMIN_PERMISSION], 'prefix' => getAdminPrefix('setting')], function () {
     Route::group(['middleware' => ['permission:modules_settings_admin_list']], function () {
         Route::get('/', 'GeekCms\Setting\Http\Controllers\AdminController@index')
             ->name('admin.setting')
