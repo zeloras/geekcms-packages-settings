@@ -71,7 +71,7 @@ class Content extends Model
         $path = $this->getSlugTree($this);
 
         return route('page.open', [
-            'slug' => implode('/', $path),
+            'slug' => implode(DIRECTORY_SEPARATOR, $path),
         ]);
     }
 

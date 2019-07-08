@@ -69,7 +69,7 @@ class ManagerRepository
             }
         }
 
-        return Cache::remember($this->cacheSettingKey, config('cache.settings.minutes', 10), function () {
+        return Cache::remember($this->cacheSettingKey, \Gcms::MAIN_CACHE_TIMEOUT_KEY, function () {
             try {
                 return Setting::all();
             } catch (\Illuminate\Database\QueryException $e) {
