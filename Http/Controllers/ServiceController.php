@@ -3,13 +3,15 @@
 namespace GeekCms\Setting\Http\Controllers;
 
 use Artisan;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Mail;
+use Swift_TransportException;
 
 class ServiceController extends Controller
 {
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function clearCache()
     {
@@ -19,7 +21,7 @@ class ServiceController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function clearView()
     {
@@ -29,7 +31,7 @@ class ServiceController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function emailCheck()
     {
@@ -41,10 +43,9 @@ class ServiceController extends Controller
                 $mail->from(config('mail.from.address'), config('app.name'));
 
                 $mail->to(config('mail.from.address'), $user)
-                    ->subject('Проверка отправки почтовых сообщений')
-                ;
+                    ->subject('Проверка отправки почтовых сообщений');
             });
-        } catch (\Swift_TransportException $e) {
+        } catch (Swift_TransportException $e) {
             $errors[] = $e->getMessage();
         }
 

@@ -1,45 +1,47 @@
 {
-    "name": "Setting",
-    "alias": "setting",
-    "description": "",
-    "keywords": [],
-    "active": 1,
-    "order": 1,
-    "providers": [
-        "GeekCms\\Setting\\Providers\\InitServiceProvider"
-    ],
-    "aliases": {},
-    "files": [
-        "loader.php"
-    ],
-    "requires": [
-        "GeekCms\\PackagesManager"
-    ],
-    "access_permissions": [
+  "name": "Setting",
+  "alias": "setting",
+  "description": "",
+  "keywords": [],
+  "active": 1,
+  "order": 1,
+  "providers": [
+    "GeekCms\\Setting\\Providers\\InitServiceProvider"
+  ],
+  "aliases": {},
+  "files": [
+    "loader.php"
+  ],
+  "requires": [
+    "GeekCms\\PackagesManager"
+  ],
+  "access_permissions": [
+    {
+      "name": "modules_settings_admin_list",
+      "i18n_name": "access.modules_settings_admin_list"
+    },
+    {
+      "name": "modules_settings_admin_edit",
+      "i18n_name": "access.modules_settings_admin_edit"
+    }
+  ],
+  "menu_sidebar": [
+    {
+      "i18n_name": null,
+      "route": null,
+      "icon": "font-icon font-icon-cogwheel",
+      "child": [
         {
-            "name": "modules_settings_admin_list",
-            "i18n_name": "access.modules_settings_admin_list"
+          "route": "setting",
+          "i18n_name": "admin/sidenav.global",
+          "icon": "font-icon font-icon-earth-bordered"
         },
         {
-            "name": "modules_settings_admin_edit",
-            "i18n_name": "access.modules_settings_admin_edit"
+          "route": "setting.variables",
+          "i18n_name": "admin/sidenav.variables",
+          "icon": "font-icon font-icon-users-group"
         }
-    ],
-    "menu_sidebar": [{
-        "i18n_name": null,
-        "route": null,
-        "icon": "font-icon font-icon-cogwheel",
-        "child": [
-            {
-                "route": "setting",
-                "i18n_name": "admin/sidenav.global",
-                "icon": "font-icon font-icon-earth-bordered"
-            },
-            {
-                "route": "setting.variables",
-                "i18n_name": "admin/sidenav.variables",
-                "icon": "font-icon font-icon-users-group"
-            }
-        ]
-    }]
+      ]
+    }
+  ]
 }

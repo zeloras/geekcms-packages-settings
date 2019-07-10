@@ -2,10 +2,14 @@
 
 namespace GeekCms\Content\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Ponich\Eloquent\Traits\HasAttachment;
 use Ponich\Eloquent\Traits\VirtualAttribute;
+use function is_array;
 
 class Content extends Model
 {
@@ -13,24 +17,19 @@ class Content extends Model
     use VirtualAttribute;
     use HasAttachment;
 
-    public $table = 'content';
-
-    public $guarded = [
-        'id',
-    ];
-
-    public $with = [
-        'parent',
-    ];
-
-    public $virtalAttributes = [];
-
     public static $content;
-
     /**
      * @var string User model namespace
      */
-    public static $userModel = \App\Models\User::class;
+    public static $userModel = User::class;
+    public $table = 'content';
+    public $guarded = [
+        'id',
+    ];
+    public $with = [
+        'parent',
+    ];
+    public $virtalAttributes = [];
 
     public function __construct(array $attributes = [])
     {
@@ -44,11 +43,40 @@ class Content extends Model
     public function setContentType($content)
     {
         // attributes
-        if (isset($content->attributes) && \is_array($content->attributes)) {
+        if (isset($content->attributes) && is_array($content->attributes)) {
             foreach ($content->attributes as $key => $type) {
                 $this->virtalAttributes[] = (is_numeric($key)) ? $type : $key;
             }
         }
+    }
+
+    /**
+     * Model boot.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        // creating
+        self::creating(function ($model) {
+            $model->created_by = auth()->id();
+
+            return $model;
+        });
+
+        // updating
+        self::updating(function ($model) {
+            $model->updated_by = auth()->id();
+
+            return $model;
+        });
+
+        // deleting
+        self::deleting(function ($model) {
+            $model->deleted_by = auth()->id();
+
+            return $model;
+        });
     }
 
     /**
@@ -75,6 +103,32 @@ class Content extends Model
         ]);
     }
 
+    /**
+     * Parse recursive parent slug.
+     *
+     * @param $model
+     * @param int $level
+     *
+     * @return array
+     */
+    protected function getSlugTree($model, $level = 0)
+    {
+        $path = [];
+        ++$level;
+
+        $path[] = array_get($model, 'slug');
+
+        if ($parentModel = array_get($model, 'parent')) {
+            $path = array_merge($path, $this->getSlugTree($parentModel, $level));
+        }
+
+        if (1 === $level) {
+            return array_reverse($path);
+        }
+
+        return $path;
+    }
+
     public function getUrlEditAttribute()
     {
         return route('content.edit', [
@@ -99,7 +153,7 @@ class Content extends Model
     /**
      * Get parent item.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function parent()
     {
@@ -109,7 +163,7 @@ class Content extends Model
     /**
      * Get children items.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function children()
     {
@@ -162,60 +216,5 @@ class Content extends Model
         $this->deleted_by_id = null;
 
         return $user;
-    }
-
-    /**
-     * Model boot.
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        // creating
-        self::creating(function ($model) {
-            $model->created_by = auth()->id();
-
-            return $model;
-        });
-
-        // updating
-        self::updating(function ($model) {
-            $model->updated_by = auth()->id();
-
-            return $model;
-        });
-
-        // deleting
-        self::deleting(function ($model) {
-            $model->deleted_by = auth()->id();
-
-            return $model;
-        });
-    }
-
-    /**
-     * Parse recursive parent slug.
-     *
-     * @param $model
-     * @param int $level
-     *
-     * @return array
-     */
-    protected function getSlugTree($model, $level = 0)
-    {
-        $path = [];
-        ++$level;
-
-        $path[] = array_get($model, 'slug');
-
-        if ($parentModel = array_get($model, 'parent')) {
-            $path = array_merge($path, $this->getSlugTree($parentModel, $level));
-        }
-
-        if (1 === $level) {
-            return array_reverse($path);
-        }
-
-        return $path;
     }
 }
