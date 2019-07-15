@@ -29,6 +29,7 @@ var moduleSettingsAdmin = {
      */
     loadConfig: function (settings_list_admin) {
         let self = this;
+        settings_list_admin = (['array', 'object'].indexOf(typeof settings_list_admin) === -1) ? JSON.parse(settings_list_admin) : settings_list_admin;
 
         if (settings_list_admin) {
             for (let key in settings_list_admin) {
