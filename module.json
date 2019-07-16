@@ -4,7 +4,7 @@
   "description": "",
   "keywords": [],
   "active": 1,
-  "order": 1,
+  "order": -2,
   "providers": [
     "GeekCms\\Setting\\Providers\\InitServiceProvider"
   ],
@@ -13,7 +13,8 @@
     "src/loader.php"
   ],
   "requires": [
-    "GeekCms\\PackagesManager"
+    "GeekCms\\PackagesManager",
+    "GeekCms\\Translates"
   ],
   "access_permissions": [
     {
