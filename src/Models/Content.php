@@ -2,6 +2,7 @@
 
 namespace GeekCms\Content\Models;
 
+use App\Models\MainModel;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +12,7 @@ use Ponich\Eloquent\Traits\HasAttachment;
 use Ponich\Eloquent\Traits\VirtualAttribute;
 use function is_array;
 
-class Content extends Model
+class Content extends MainModel
 {
     use SoftDeletes;
     use VirtualAttribute;

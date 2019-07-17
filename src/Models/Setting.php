@@ -2,9 +2,9 @@
 
 namespace GeekCms\Setting\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\MainModel;
 
-class Setting extends Model
+class Setting extends MainModel
 {
     protected $table = 'settings';
 
